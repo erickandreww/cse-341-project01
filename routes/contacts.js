@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+// contacts controller require
 const contactsController = require('../controller/contacts')
 
 // contacts CRUD

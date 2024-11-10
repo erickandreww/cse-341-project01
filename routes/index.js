@@ -4,7 +4,7 @@ const router = express.Router();
 // contacts route
 router.use('/contacts', require('./contacts'))
 
-// default index
+// default
 router.get('/', (req, res, next) => {
     res.send('Hello');
 }); 

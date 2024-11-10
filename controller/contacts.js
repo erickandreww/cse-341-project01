@@ -1,6 +1,7 @@
 const mongodb = require('../data/database')
 const ObjectId = require('mongodb').ObjectId; 
 
+// get all contacts
 const getAllContacts = async (req, res, next) => {
     const result = await mongodb.getDatabase().db().collection('contacts').find();
     result.toArray().then((contacts) => {
@@ -12,6 +13,7 @@ const getAllContacts = async (req, res, next) => {
     });
 }
 
+// get a single contact
 const getContact = async (req, res, next) => {
     const contactId = new ObjectId(req.params.id);
     const result = mongodb.getDatabase().db().collection('contacts').find({_id: contactId});
@@ -21,6 +23,7 @@ const getContact = async (req, res, next) => {
     })
 }
 
+// add a contact to the database
 const addContact = async (req, res, next) => {
     const newContact = {
         firstName: req.body.firstName,
@@ -39,6 +42,7 @@ const addContact = async (req, res, next) => {
     .catch((error) => {console.log(error.message)});
 }
 
+// update a contact by id
 const updateContact = async (req, res, next) => {
     const contactId = new ObjectId(req.params.id);
     const result = mongodb.getDatabase().db().collection('contacts'); 
@@ -61,6 +65,8 @@ const updateContact = async (req, res, next) => {
     .catch((error) => {console.log(error.message)});
 }
 
+
+// delete a contact
 const deleteContact = async (req, res, next) => {
     const contactId = new ObjectId(req.params.id);
     const result = mongodb.getDatabase().db().collection('contacts'); 
